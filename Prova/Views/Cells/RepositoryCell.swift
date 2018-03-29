@@ -8,11 +8,26 @@
 
 import UIKit
 
-class RepositoryCell: UICollectionViewCell {
+class RepositoryCell: BaseCell {
 
+    @IBOutlet var shadowView: UIView!
+    @IBOutlet var cardView: UIView!
+    @IBOutlet var ownerAvatarView: UIImageView!
+    @IBOutlet var ownerNameLabel: UILabel!
+    @IBOutlet var descLabel: UILabel!
+    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var forksCountLabel: UILabel!
+    @IBOutlet var starsCountLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        cardLayout(view: cardView)
+        cardShadow(view: shadowView)
     }
-
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        ownerAvatarView.layer.masksToBounds = true
+        ownerAvatarView.layer.cornerRadius = ownerAvatarView.frame.height / 2
+    }
 }
